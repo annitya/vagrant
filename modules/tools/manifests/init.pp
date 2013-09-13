@@ -14,4 +14,7 @@ class tools {
 	package { 'build-essential':
 		ensure => installed
 	}
+	package { 'imagemagick':
+	    ensure => installed
+    }
 }

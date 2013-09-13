@@ -1,5 +1,5 @@
 class php::install {
-    $phppackages = ['php5-cli', 'php5-sqlite', 'php5-intl', 'php5-curl', 'php5-common', 'php5-dev', 'php5-geoip', 'php5-gmp', 'php5-imagick', 'php5-imap', 'php5-mcrypt', 'php5-tidy', 'php-apc', 'php-pear', 'php5-xdebug', 'php5-gd', 'php5-mysql', 'php5-fpm']
+    $phppackages = ['php5-cli', 'php5-sqlite', 'php5-intl', 'php5-curl', 'php5-common', 'php5-dev', 'php5-geoip', 'php5-gmp', 'php5-imagick', 'php5-imap', 'php5-mcrypt', 'php5-tidy', 'php-apc', 'php-pear', 'php5-xdebug', 'php5-gd', 'php5-mysql', 'php5-fpm', 'php5-xsl']
     
     package { $phppackages: 
         ensure => installed
@@ -70,7 +70,6 @@ class php::run {
     }
 }
 
-
 class composer {
   $composer_command_name = 'composer'
   $composer_target_dir = '/usr/local/bin'
@@ -79,7 +78,7 @@ class composer {
   exec { "wget-fetchcomposer":
     command     => "wget --output-document='${composer_target_dir}/${composer_command_name}' 'http://getcomposer.org/composer.phar'",
     path        => '/usr/bin:/usr/sbin:/bin:/usr/local/bin:/opt/local/bin',
-    unless		=> 'test -s ${composer_target_dir}/${composer_command_name}'
+    unless		=> "test -s ${composer_target_dir}/${composer_command_name}"
   }
 
   exec { 'composer-fix-permissions':
@@ -88,7 +87,7 @@ class composer {
     cwd     => $composer_target_dir,
     user    => $composer_user,
     unless  => "test -x ${composer_target_dir}/${composer_command_name}",
-    
+    require => Exec['wget-fetchcomposer'],
   }
 
    exec { 'composer-update':
