@@ -1,0 +1,20 @@
+<VirtualHost *:80>
+  ServerName hb.dev
+
+  DocumentRoot /vagrant/www/web
+
+  <Directory /vagrant/www/web>
+    Options Indexes FollowSymLinks MultiViews
+    AllowOverride None
+    Require all granted
+  </Directory>
+
+  ErrorLog /var/log/apache2/hb.dev_error.log
+  LogLevel warn
+  ServerSignature Off
+  CustomLog /var/log/apache2/hb.dev_access.log combined
+
+  <%= scope.function_template(["ezpublish/php.conf.erb"]) %>
+  <%= scope.function_template(["ezpublish/rewrite.conf.erb"]) %>
+
+</VirtualHost>

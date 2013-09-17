@@ -17,4 +17,10 @@ class tools {
 	package { 'imagemagick':
 	    ensure => installed
     }
+    package { 'memcached':
+        ensure => installed
+    }
+    package { 'vim':
+        ensure => installed
+    }
 }
