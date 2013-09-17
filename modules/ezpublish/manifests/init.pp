@@ -62,7 +62,7 @@ class ezpublish::post_configure {
 
     exec { 'restart-apache':
         command => 'sudo apachectl restart',
-        require => Class['ezpublish::configure_apache,', 'ezpublish::configure_php', 'ezpublish::configure_vhost']
+        require => Class['ezpublish::configure_apache', 'ezpublish::configure_php', 'ezpublish::configure_vhost']
     }
 }
 

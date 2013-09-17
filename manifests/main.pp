@@ -2,7 +2,13 @@ Exec {
     path => ['/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/', '/usr/local/bin']
 }
 
-stage { 'prepare': before => Stage['main'] }
+stage { 'prepare':
+    before => Stage['main']
+}
+
+stage { 'configure':
+    require => Stage['main']
+}
 
 class {
     'bootstrap':    stage => prepare;
@@ -11,5 +17,5 @@ class {
 	'tools':        stage => main;
 	'php':          stage => main;
 	'apache':       stage => main;
-    'ezpublish':    stage => main;
+    'ezpublish':    stage => configure;
 }

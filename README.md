@@ -15,7 +15,7 @@ How
 Use existing environment
 ========================
     * Remove the www-folder
-    * Create a symlink to your existing environment.
+    * Replace it with your existing environment.
 
 
 Start from scratch
@@ -37,6 +37,7 @@ And then
 You should determine which sql-server you wish to use and update the ezpublish-configuration accordingly.
 Type "vagrant up" and grab a cup of coffee.
 Start solr and do a complete reindex.
+Presto! You are now good to go!
 
 
 Facts
