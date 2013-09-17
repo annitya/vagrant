@@ -4,11 +4,23 @@ class apache::install {
         ensure => installed
     }
 
+    package { 'php5-common':
+        ensure => installed
+    }
+
+    package { 'libapache2-mod-php5':
+        ensure => installed
+    }
+
+    package { 'php5-cli':
+        ensure => installed
+    }
+
     exec { 'upgrade-php':
         path => '/usr/bin:/usr/sbin:/bin',
         command => 'sudo apt-get install php5 -y',
         timeout => 1800,
-        require => Package['apache2']
+        require => Package['apache2, php5-common, libapache2-mod-php5, php5-cli']
     }
 }
 
