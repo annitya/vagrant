@@ -14,26 +14,6 @@ class php::install {
     }
 }
 
-class php::configure {
-    file { 'php-configuration':
-        ensure  => present,
-        path    => '/etc/php5/apache2/php.ini',
-        owner   => 'root',
-        group   => 'root',
-        content => template('php/php.ini.erb'),
-    }
-}
-
-class php::configure_xdebug {
-    file { 'xdebug-configuration':
-        ensure  => present,
-        path    => '/etc/php5/apache2/conf.d/20-xdebug.ini',
-        owner   => 'root',
-        group   => 'root',
-        content => template('php/xdebug.ini.erb'),
-    }
-}
-
 class composer {
   $composer_command_name = 'composer'
   $composer_target_dir = '/usr/local/bin'
@@ -61,7 +41,5 @@ class composer {
 
 class php {
     include php::install
-    include php::configure
-    include php::configure_xdebug
     include composer
 }

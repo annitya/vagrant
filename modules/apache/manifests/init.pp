@@ -12,36 +12,6 @@ class apache::install {
     }
 }
 
-class apache::configure {
-    file { 'httpd-configuration':
-        ensure  => present,
-        path    => '/etc/apache2/conf-enabled/httpd.conf',
-        owner   => 'root',
-        group   => 'root',
-        content => template('apache/httpd.conf.erb'),
-    }
-
-    file { 'envvars-configuration':
-        ensure  => present,
-        path    => '/etc/apache2/envvars',
-        owner   => 'root',
-        group   => 'root',
-        content => template('apache/envvars.erb'),
-    }
-
-    exec { 'apache-rewrite-mod':
-        command => 'sudo a2enmod rewrite'
-    }
-}
-
-class apache::restart {
-    exec { 'restart-apache':
-        command => 'sudo apachectl restart'
-    }
-}
-
 class apache {
     include apache::install
-    include apache::configure
-    include apache::restart
 }
