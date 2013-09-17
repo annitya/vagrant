@@ -4,10 +4,6 @@ class apache::install {
         ensure => installed
     }
 
-    package { 'php5-common':
-        ensure => installed
-    }
-
     package { 'libapache2-mod-php5':
         ensure => installed
     }
