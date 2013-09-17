@@ -1,33 +1,51 @@
-Keymedia development environment
+Haugenbok development environment
 ====
 Vagrant with Puppet for a complete web development workspace
 
 Content
 =======
-Ubuntu Server 12.04 + Nginx + PHP + MySQL + MongoDB + NodeJS + Redis and more... 
+Ubuntu Server 12.04 + Apache + PHP 5.5 w/xDebug 2.2.3 + MySQL
 
 How
 ===
-- VirtualBox must be installed and vagrant
-- Make sure that you have the "precise32" box installed with that name. If not install it with command "vagrant box add precise32 http://files.vagrantup.com/precise32.box"
+    * Install Vagrant and virtualbox.
+    * Clone this repository.
 
- 1. Clone this repository
- 2. Move into the repository and run "vagrant up" (This will take some minutes, you can continue to the next step while it's running)
- 3. Add to your "hosts" file (OSX: /private/etc/hosts):
-		47.47.47.47	keymedia.dev
-		47.47.47.47	admin.keymedia.dev
-		47.47.47.47	m.keymedia.dev
- 4. Clone the keymedia repo into the "www" folder. (Move into the "www" folder and run "git clone https://github.com/KeyteqLabs/keymedia.git")
- 5. When the "vagrant up" is finished you must log into your new VM with "vagrant ssh"
- 6. Go to: cd /vagrant/www/keymedia
- 	- Run composer "composer install"
- 	- mkdir -p keymedia/resources/tmp/cache/templates
- 6. An admin-user must be created in order to use the admin-panel
- 		- Run the following command(Replace username and password as it suits you):
- 			"/vagrant/www/keymedia/keymedia/run admin createUser --username=admin --password=su46fk39"
- 7. You should now be able to head over to "http://admin.keymedia.dev" and login with the username/password you generated
- 8. Create a new site with the following CNAME "m.keymedia.dev" and the cdn option turned off.
- 9. You should be good to go!
+
+Use existing environment
+========================
+    * Remove the www-folder
+    * Create a symlink to your existing environment.
+
+
+Start from scratch
+==================
+    * Checkout the customer repository.
+    * Copy all legacy-stuff to ezpublish_legacy.
+    * Run composer install and update.
+    * Grab a fresh sql-dump and import it into your favorite mysql-installation. (The virtual-machine also has an empty database ready for you!)
+    * If you want images and have a lot of time to spare: grab a copy of the sitefiles as well.
+
+
+And then
+========
+    * Virtualbox doesn't deal well with absolute symbolic links.
+    * Standing in the www-folder, run the folllowing command: ../tools/symlinks -cr *
+    * This will convert all symbolic links to relative ones.
+
+
+You should determine which sql-server you wish to use and update the ezpublish-configuration accordingly.
+Type "vagrant up" and grab a cup of coffee.
+Start solr and do a complete reindex.
+
+
+Facts
+======
+    * The ip-address of the virtual-machine is 33.33.33.10
+    * You can access it by typing "vagrant ssh"
+    * Vagrant suspend will save the current state
+    * Vagrant halt will shut down virtual-machine gracefully
+    * Mysql stuff: root/no password, forlagsh/forlagsh, database: haugenbok.
 
  
 
