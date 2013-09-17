@@ -1,9 +1,14 @@
 class apache::install {
+
+    package { 'apache2':
+        ensure => installed
+    }
+
     exec { 'upgrade-php':
         path => '/usr/bin:/usr/sbin:/bin',
         command => 'sudo apt-get install php5 -y',
         timeout => 1800,
-        require => [Package['python-software-properties'], Exec['update-apt-sources']]
+        require => Package['apache2']
     }
 }
 
