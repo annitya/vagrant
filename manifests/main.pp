@@ -10,6 +10,6 @@ class {
 	'mysql':        stage => main;
 	'tools':        stage => main;
 	'php':          stage => main;
-	'ezpublish':    stage => main;
 	'apache':       stage => main;
+    'ezpublish':    stage => main;
 }
