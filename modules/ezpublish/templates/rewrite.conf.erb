@@ -46,6 +46,10 @@
     # Following rule is needed to correctly display assets from eZ Publish5 / Symfony bundles
     RewriteRule ^/bundles/ - [L]
 
+    # eZ Publish 5.1
+	RewriteRule ^/css/.*\.css - [L]
+	RewriteRule ^/js/.*\.js - [L]
+
     # Use index_dev in dev env to make sure all 5.x versions can run dev
     RewriteRule .* /index_dev.php [L]
 </IfModule>
