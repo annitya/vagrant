@@ -34,6 +34,11 @@ class ezpublish::configure_php {
         group   => 'root',
         content => template('php/xdebug.ini.erb'),
     }
+
+    file { '/etc/php5/cli/php.ini':
+        ensure => link,
+        target => '/etc/php5/apache2/php.ini'
+    }
 }
 
 class ezpublish::configure_vhost {
@@ -50,7 +55,7 @@ class ezpublish::configure_vhost {
         ensure  => link,
         path    => '/etc/apache2/sites-enabled/ezpublish.conf',
         target  => '/etc/apache2/sites-available/ezpublish.conf',
-        require => [ File['ezpublish-vhost'] ],
+        require => [ File['ezpublish-vhost'] ]
     }
 }
 
