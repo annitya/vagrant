@@ -1,4 +1,65 @@
-# Ignore everything in this directory
-*
-# Except this file
-!.gitignore
+# IDEs file
+.idea
+*.PHPEditProject
+atlassian-ide-plugin.xml
+
+# generic backups and OS junk
+*.bak
+.DS_STORE
+*.php~
+*.swp
+
+# top-level dir
+GETTING_STARTED.md
+LICENSE
+MODULE_CREATION.md
+composer.phar
+nohup.out
+
+# stuff in subdirs - most of it is handled by the custom composer scripts
+vendor
+
+ezpublish_legacy
+ezpublish_legacy/extension/settings.zwebb/settings/site.ini.append.php
+
+ezpublish/cache
+ezpublish/logs
+ezpublish/config/*_priv.yml
+
+web/.htaccess
+web/bundles
+web/design
+web/extension
+web/share
+web/var
+
+web/images
+web/js
+web/css
+
+web/sitemap*
+
+apache2.conf
+
+# q: are the following 2 lines needed/wanted?
+web/index_rest.php
+web/index_cluster.php
+
+legacy/repos
+# the legacy/settings/override/site.ini.append.php file is supposed to be managed per-environment as symlink
+legacy/settings/override/*.priv.append.php
+legacy/settings/override/file.ini.append.php
+legacy/settings/override/site.ini.append.php
+legacy/settings/override/solr.ini.append.php
+
+
+# q: are the following 2 lines correct/needed ?
+Forlagshuset/ProductImportBundle/Resources/config/locationMap.yml
+Keyteq/TestBundle
+
+# personal env
+data/
+notes
+
+# crontab data
+scripts/crontab/timestamps_reco/
