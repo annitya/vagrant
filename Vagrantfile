@@ -3,16 +3,13 @@ Vagrant.configure("2") do |config|
     config.vm.box = "precise64"
     config.vm.box_url = "http://files.vagrantup.com/precise64.box"
     config.vm.network :private_network, ip: "33.33.33.10"
-    config.vm.synced_folder ".", "/vagrant", nfs: true, mount_options: ['actimeo=1']
-    config.nfs.map_uid = Process.uid
-    config.nfs.map_gid = Process.gid
+    config.vm.synced_folder ".", "/vagrant", :disabled => true
 
     config.vm.provider "virtualbox" do |vb|
         vb.customize ["modifyvm", :id, "--memory", 4096]
         vb.customize ["modifyvm", :id, "--cpus", "8"]
         vb.customize ["modifyvm", :id, "--vram", "10"]
         vb.customize ["modifyvm", :id, "--cpuexecutioncap", "95"]
-        vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
     end
 
     config.vm.provision :puppet do |puppet|
